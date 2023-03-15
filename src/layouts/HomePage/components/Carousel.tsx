@@ -9,7 +9,42 @@ export const Carousel = () => {
 
   useEffect(() => {
     const fetchBooks = async () => {
+      //create api to fetch books from spring book application
+      const baseUrl: string = "http://localhost:8080/api/books"
+
+      const url: string = `${baseUrl}?page=0&size=9`;
+
+      const response = await fetch(url);
+
+      if(!response.ok){
+        //check to make sure we got data looking for
+        throw new Error('Something went wrong!');
+      }
+
       
+      const responseJson = await response.json();
+
+      const responseData = responseJson._embedded.books;
+
+      const loadedBooks: BookModel[] = [];
+
+      for(const key in responseData){
+        loadedBooks.push({
+          id: responseData[key].id,
+          title: responseData[key].title,
+          author: responseData[key].author,
+          description: responseData[key].description,
+          copies: responseData[key].copies,
+          copiesAvailable: responseData[key].copiesAvailable,
+          category: responseData[key].category,
+          img: responseData[key].img,
+
+        })
+      }
+
+      setBooks(loadedBooks);
+      setIsLoading(false);
+
     };
     fetchBooks().catch((error: any) => {
       setIsLoading(false);
