@@ -8,8 +8,9 @@ import { SearchBooksPage } from "./layouts/SearchBooksPage/SearchBooksPage";
 
 export const App = () => {
   return (
-    <div>
+    <div className="d-flex flex-column min-vh-100">
       <Navbar />
+      <div className="flex-grow-1"> {/*this div is for the footer to stay on bottom */}
       <Switch>
         {/*exact overrides*/}
         <Route path="/" exact>
@@ -22,6 +23,7 @@ export const App = () => {
           <SearchBooksPage />
         </Route>
       </Switch>
+      </div>
       <Footer />
     </div>
   );
