@@ -15,8 +15,8 @@ export const App = () => {
         <Route path="/" exact>
           <Redirect to='/home'/>
         </Route>
-        <Route path="/">
-          <Homepage />
+        <Route path="/home">
+          <Homepage /> 
         </Route>
         <Route path="/search">
           <SearchBooksPage />
