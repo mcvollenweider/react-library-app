@@ -1,10 +1,36 @@
 export const StarsReview: React.FC<{ rating: number; size: number }> = (
   props
 ) => {
+  let rating = props.rating;
+
+  let fullStars = 0;
+
+  let halfStars = 0;
+
+  let emptyStars = 0;
+
+  if (rating !== undefined && rating > 0 && rating <= 5) {
+    for (let i = 0; i <= 4; i++) {
+      if (rating - 1 >= 0) {
+        fullStars = fullStars + 1;
+        rating = rating - 1;
+      } else if (rating === 0.5) {
+        halfStars = halfStars + 1;
+        rating = rating - 0.5;
+      } else if (rating === 0) {
+        emptyStars = emptyStars + 1;
+      } else {
+        break;
+      }
+    }
+  } else {
+    emptyStars = 5;
+  }
+
   return (
     <div>
       {/**stars came from bootstrap icons edited width/height and added style for color */}
-      {Array.from({ length: 2 }, (_, i) => (
+      {Array.from({ length: fullStars }, (_, i) => (
         <svg
           key={i}
           xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +44,7 @@ export const StarsReview: React.FC<{ rating: number; size: number }> = (
           <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
         </svg>
       ))}
-      {Array.from({ length: 1 }, (_, i) => (
+      {Array.from({ length: halfStars}, (_, i) => (
         <svg
           key={i}
           xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +59,7 @@ export const StarsReview: React.FC<{ rating: number; size: number }> = (
         </svg>
       ))}
 
-      {Array.from({ length: 2 }, (_, i) => (
+      {Array.from({ length: emptyStars}, (_, i) => (
         <svg
           key={i}
           xmlns="http://www.w3.org/2000/svg"
