@@ -9,15 +9,15 @@ export const LatestReviews: React.FC<{
 }> = (props) => {
   return (
     <div className={props.mobile ? "mt-3" : "row mt-5"}>
-      <div className={props.mobile ? "" : "col-sm-2 col-md-2"}>
+      <div className={props.mobile ? " " : "col-sm-2 col-md-2"}>
         <h2>Latest Reviews:</h2>
       </div>
-      <div className="col-sm-10 col">
+      <div className="col-sm-10 col-md-10">
         {props.reviews.length > 0 ? (
           <>
-            {props.reviews.slice(0, 3).map((eachReview) => {
-              <Review review={eachReview} key={eachReview.id}></Review>;
-            })}
+            {props.reviews.slice(0, 3).map((eachReview) => (
+              <Review review={eachReview} key={eachReview.id}></Review>
+            ))}
             <div className="m-3">
               <Link
                 type="button"
