@@ -22,8 +22,12 @@ export const BookCheckoutPage = () => {
 
   //Loans Count State
   const [currentLoansCount, setCurrentLoansCount] = useState(0);
-  const [isLoadingCurrentLoansCount, setIsLoadingCurrentLoansCount] =
-    useState(true);
+  const [isLoadingCurrentLoansCount, setIsLoadingCurrentLoansCount] = useState(true);
+
+//Book checked out State
+
+const [isCheckedOut, setIsCheckedOut] = useState(false);
+const [isLoadingBookCheckedOut, setIsLoadingBookCheckedOut] = useState(true);
 
   /*bookId is grabbing url ex: localhost:3000/checkout/<bookId> */
 
@@ -140,6 +144,19 @@ export const BookCheckoutPage = () => {
       setHttpError(error.message);
     });
   }, [authState]);
+
+  //useEffect for book checked out
+  useEffect(()=>{
+    const fetchUserCheckedOutBook = async () =>{
+
+    };
+
+    fetchUserCheckedOutBook().catch((error: any)=>{
+      setIsLoadingBookCheckedOut(false);
+      setHttpError(error.message);
+    })
+
+  },[authState]);
 
   if (isLoading || isLoadingReview || isLoadingCurrentLoansCount) {
     return <SpinnerLoading />;
