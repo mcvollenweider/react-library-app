@@ -116,7 +116,7 @@ export const BookCheckoutPage = () => {
     };
 
     fetchBookReviews().catch((error: any) => {
-      setIsLoading(false);
+      setIsLoadingReview(false);
       setHttpError(error.message);
     });
   }, [isReviewLeft]);
